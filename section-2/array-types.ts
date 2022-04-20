@@ -18,3 +18,5 @@ for (const hobby of person.hobbies) {
 }
 
 console.log(person);
+
+export { }

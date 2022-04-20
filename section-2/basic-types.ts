@@ -7,3 +7,5 @@ const number2 = 7.5;
 
 const result = add(number1, number2);
 console.log(result);
+
+export { };

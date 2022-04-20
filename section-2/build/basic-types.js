@@ -5,4 +5,5 @@ var number1 = 10;
 var number2 = 7.5;
 var result = add(number1, number2);
 console.log(result);
+export {};
 //# sourceMappingURL=basic-types.js.map

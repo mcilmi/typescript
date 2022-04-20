@@ -38,6 +38,6 @@ const person = {
     da: 35
 };
 
-
-
 console.log(person);
+
+export { };
