@@ -25,10 +25,10 @@ const person: {
 person.role.push('admin');
 
 // It is better to assign values, using the litteral method, as tsc will catch this.
-person.role[0] = 'admin'; // This will fail
-person.role[1] = 'admin'; // This will work
-person.role = [1, 'admin']; // This will work
-person.role = [1, 'admin', 'developer']; // This will fail
+// person.role[0] = 'admin'; // This will fail
+// person.role[1] = 'admin'; // This will work
+// person.role = [1, 'admin']; // This will work
+// person.role = [1, 'admin', 'developer']; // This will fail
 
 console.log(person);
 
