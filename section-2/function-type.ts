@@ -26,3 +26,5 @@ let combineValues: (a: number, b: number) => number = add;
  */
 
 console.log('Result:', combineValues(70, 18));
+
+export { };
