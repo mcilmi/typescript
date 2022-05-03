@@ -1,12 +1,13 @@
 
 class Department {
-    private name: string;
+    name: string;
 
     constructor(n: string) {
         this.name = n;
     }
 
-    describe() {
+    // this keyowrd will always point to the proper instance
+    describe(this: Department) {
         console.log('Department: ' + this.name);
     }
 }
@@ -15,8 +16,8 @@ class Department {
 const accounting = new Department('Accounting');
 accounting.describe();
 
-// Copying object and this keyword
-const accountingCopy = { describe: accounting.describe };
+// Copying object and align it will the proper structure of the source object
+const accountingCopy = { name: 'Maxamed', describe: accounting.describe };
 
 /**  
  * When accountingCopy.describe is called. 
