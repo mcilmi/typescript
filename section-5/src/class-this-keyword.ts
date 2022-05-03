@@ -25,3 +25,6 @@ const accountingCopy = { name: 'Maxamed', describe: accounting.describe };
  * name field.
  * */
 accountingCopy.describe();
+
+
+export { };
