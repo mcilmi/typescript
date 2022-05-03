@@ -3,7 +3,7 @@
  */
 
 interface Greetable {
-    name: string;
+    readonly name: string;
     age: number;
     greet(phrase: string): void;
 }
@@ -25,5 +25,5 @@ class Person implements Greetable {
 let user1: Greetable;
 
 user1 = new Person('Madinah Maxamed', 7);
-
+// user1.name = 'new name'; // Fails due to readonly
 user1.greet('Assalamu caleykum, magaceygu waa');
