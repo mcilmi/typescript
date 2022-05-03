@@ -2,8 +2,12 @@
  * Interface is contract that implementations shall depend on
  */
 
-interface Greetable {
+interface Named {
     readonly name: string;
+}
+
+// It is possible to extend existing interface, thus composition is achieved. 
+interface Greetable extends Named {
     age: number;
     greet(phrase: string): void;
 }
