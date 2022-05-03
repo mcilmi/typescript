@@ -62,3 +62,5 @@ accountingDepartment.addEmployee('Lax');
 
 console.log(accountingDepartment);
 accountingDepartment.printReports();
+
+export { };
