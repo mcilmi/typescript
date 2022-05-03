@@ -28,4 +28,5 @@ accounting.addEmployee('Mikal');
 
 accounting.describe();
 
+export { };
 
