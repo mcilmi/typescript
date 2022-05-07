@@ -22,20 +22,6 @@ const e1: ElevatedEmployee = {
 
 console.log('e1', e1);
 
-type Combinable = string | number;
-type Numeric = number | boolean;
-type Universal = Combinable & Numeric;
-
-// This will not work. Typeguard is required.
-function add(a: Combinable, b: Combinable) {
-    // Typeguard using typeof
-    if (typeof a === 'string' || typeof b === 'string') {
-        return a.toString() + b.toString();
-    }
-
-    return a + b;
-}
-
 type UknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(employee: UknownEmployee) {
@@ -51,10 +37,10 @@ function printEmployeeInformation(employee: UknownEmployee) {
     }
 }
 // This will work
-// printEmployeeInformation(e1);
+printEmployeeInformation(e1);
 
 // This will also work, due to the typeguard on .permissions
-// printEmployeeInformation({ name: 'Mikaal', startDate: new Date() });
+printEmployeeInformation({ name: 'Mikaal', startDate: new Date() });
 
 /**
  * When working with classes, typeguards can be implemented by using "instanceof" operator
