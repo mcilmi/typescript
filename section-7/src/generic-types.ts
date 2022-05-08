@@ -4,7 +4,7 @@
  * E.g: Array<string> = string[]
  */
 // const names = ['Mikal','Madinah'];
-const names: Array<string> = [];
+// const names: Array<string> = [];
 // Due to the defined type, the built-in methods for the type is available
 // names[0].split('-').join(' ');
 
