@@ -1,2 +1,3 @@
-# typescript
+# TypeScript
+
 Play with TypeScript
