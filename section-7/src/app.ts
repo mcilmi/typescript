@@ -34,5 +34,3 @@ function merge<T, U>(objA: T, objB: U) {
 
 const mergedObj = merge({ name: 'Madinah' }, { age: 7 });
 console.log(mergedObj.name); // This property is now naccessible for TS.
-
-export { };
