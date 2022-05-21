@@ -23,6 +23,12 @@ function WithTemplate(template: string, elementId: string) {
     }
 }
 
+/**
+ * Rendering order: 
+ *  Factories are rendered TOP-DOWN: FIFO - QUEUE
+ *  Decorator Functions are rendered BOTTOM-UP: LIFO - STACK
+ * Sort of 
+ */
 @Logger('Waan ku salaamay Madiinay!')
 @WithTemplate('<h1>Waan ku salaamay Madiinay</h1>', 'app')
 class Person {
@@ -33,5 +39,6 @@ class Person {
 }
 
 const person = new Person();
+console.log(person);
 
 export { };
