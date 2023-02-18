@@ -1,3 +1,13 @@
+//Validation interface
+interface Validatable {
+    value: string | number;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    min?: number;
+    max?: number;
+}
+
 // autobind decorator
 function autobind(
     _: any,
@@ -42,14 +52,48 @@ class ProjectInput {
         this.attach();
     }
 
+    private validate(validatableInput: Validatable): boolean {
+        let isValid = true;
+
+        if (validatableInput.required) {
+            isValid = isValid && validatableInput.value.toString().trim().length !== 0;
+        }
+
+        if (validatableInput.minLength != null
+            && typeof validatableInput.value === 'string') {
+            isValid = isValid && validatableInput.value.length > validatableInput.minLength;
+        }
+
+        if (validatableInput.maxLength != null
+            && typeof validatableInput.value === 'string') {
+            isValid = isValid && validatableInput.value.length < validatableInput.maxLength;
+        }
+
+        if (validatableInput.min != null
+            && typeof validatableInput.value === 'number') {
+            isValid = isValid && validatableInput.value > validatableInput.min;
+        }
+
+        if (validatableInput.max != null
+            && typeof validatableInput.value === 'number') {
+            isValid = isValid && validatableInput.value < validatableInput.max;
+        }
+
+        return isValid;
+    }
+
     private gatherUserInput(): [string, string, number] | void {
         const enteredTitle = this.titleInputElement.value.trim();
         const enteredDescription = this.descriptionInputElement.value.trim();
         const enteredPeople = Number(this.peopleInputElement.value.trim());
 
-        if (enteredTitle.length === 0
-            || enteredDescription.length === 0
-            || enteredPeople === 0) {
+        const validatableTitle: Validatable = { value: enteredTitle, required: true, minLength: 5 }
+        const validatableDescription: Validatable = { value: enteredDescription, required: true, minLength: 5 };
+        const validatablePeople: Validatable = { value: +enteredPeople, required: true, min: 50, max: 100 }
+
+        if (!this.validate(validatableTitle)
+            || !this.validate(validatableDescription)
+            || !this.validate(validatablePeople)) {
             alert("Invalid input, please try again.");
             throw new Error("Please try again");
         }
