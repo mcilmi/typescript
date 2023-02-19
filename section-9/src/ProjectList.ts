@@ -30,7 +30,9 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements IDra
 
     @autobind
     dropHandler(event: DragEvent): void {
-        console.log('dropped data', event.dataTransfer.getData('text/plain'));
+        const projectId = event.dataTransfer!.getData('text/plain');
+        const newStatus = this.type === 'active' ? ProjectStatus.Active : ProjectStatus.Finished;
+        this.projectState.moveProject(projectId, newStatus);
     }
 
     @autobind

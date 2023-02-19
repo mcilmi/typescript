@@ -28,7 +28,19 @@ class ProjectState extends State<Project> {
             ProjectStatus.Active);
 
         this.projects.push(newProject);
+        this.updateListerners();
 
+    }
+
+    moveProject(projectId: string, newStatus: ProjectStatus) {
+        const project = this.projects.find(p => p.id === projectId);
+        if (project && project.status !== newStatus) {
+            project.status = newStatus;
+            this.updateListerners();
+        }
+    }
+
+    private updateListerners(): void {
         // Notify the listeners
         for (const listenerFn of this.listeners) {
             listenerFn(this.projects.slice());
