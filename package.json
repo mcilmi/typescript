@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mcilmi/typescript/issues"
   },
-  "homepage": "https://github.com/mcilmi/typescript#readme"
+  "homepage": "https://github.com/mcilmi/typescript#readme",
+  "devDependencies": {
+    "@types/node": "^18.14.0"
+  }
 }
