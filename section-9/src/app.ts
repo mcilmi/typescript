@@ -167,13 +167,18 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
         this.renderContent();
     }
 
+    get persons() {
+        if (this.project.people === 1) return '1 person assigned';
+        return `${this.project.people} persons assigned`;
+    }
+
     configure(): void {
 
     }
 
     renderContent(): void {
         this.element.querySelector('h2')!.textContent = this.project.title;
-        this.element.querySelector('h3')!.textContent = this.project.people.toString();
+        this.element.querySelector('h3')!.textContent = this.persons;
         this.element.querySelector('p')!.textContent = this.project.description;
 
     }
@@ -216,12 +221,12 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>  {
 
         if (validatableInput.maxLength != null
             && typeof validatableInput.value === 'string') {
-            isValid = isValid && validatableInput.value.length < validatableInput.maxLength;
+            isValid = isValid && validatableInput.value.length <= validatableInput.maxLength;
         }
 
         if (validatableInput.min != null
             && typeof validatableInput.value === 'number') {
-            isValid = isValid && validatableInput.value > validatableInput.min;
+            isValid = isValid && validatableInput.value >= validatableInput.min;
         }
 
         if (validatableInput.max != null
@@ -239,7 +244,7 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>  {
 
         const validatableTitle: Validatable = { value: enteredTitle, required: true, minLength: 5 }
         const validatableDescription: Validatable = { value: enteredDescription, required: true, minLength: 5 };
-        const validatablePeople: Validatable = { value: +enteredPeople, required: true, min: 50, max: 100 }
+        const validatablePeople: Validatable = { value: +enteredPeople, required: true, min: 1, max: 100 }
 
         if (!this.validate(validatableTitle)
             || !this.validate(validatableDescription)
