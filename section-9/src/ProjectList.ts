@@ -4,6 +4,7 @@ import { ProjectState } from "./ProjectState.js";
 import { ProjectItem } from "./ProjectItem.js";
 import { Project } from "./Project.js";
 import { Component } from "./Component.js";
+import { autobind } from "./autobind.js";
 
 
 // Project list class
@@ -17,18 +18,29 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements IDra
         this.configure();
         this.renderContent();
     }
+
+    @autobind
     dragOverHandler(event: DragEvent): void {
-        throw new Error("Method not implemented.");
+        const listElement = this.element.querySelector('ul');
+        listElement.classList.add('droppable');
     }
+
+    @autobind
     dropHandler(event: DragEvent): void {
         throw new Error("Method not implemented.");
     }
+
+    @autobind
     dragLeaveHandler(event: DragEvent): void {
-        throw new Error("Method not implemented.");
+        const listElement = this.element.querySelector('ul');
+        listElement.classList.remove('droppable');
     }
 
     configure(): void {
-        console.log('projectState', this.projectState);
+        this.element.addEventListener('dragover', this.dragOverHandler);
+        this.element.addEventListener('dragleave', this.dragLeaveHandler);
+        this.element.addEventListener('drag', this.dropHandler);
+
         // Add listener
         this.projectState.addListener((projects: Project[]) => {
             const relevantProjects = projects.filter(project => {
