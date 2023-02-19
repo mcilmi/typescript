@@ -21,13 +21,16 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements IDra
 
     @autobind
     dragOverHandler(event: DragEvent): void {
-        const listElement = this.element.querySelector('ul');
-        listElement.classList.add('droppable');
+        if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+            event.preventDefault();
+            const listElement = this.element.querySelector('ul');
+            listElement.classList.add('droppable');
+        }
     }
 
     @autobind
     dropHandler(event: DragEvent): void {
-        throw new Error("Method not implemented.");
+        console.log('dropped data', event.dataTransfer.getData('text/plain'));
     }
 
     @autobind
@@ -39,7 +42,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements IDra
     configure(): void {
         this.element.addEventListener('dragover', this.dragOverHandler);
         this.element.addEventListener('dragleave', this.dragLeaveHandler);
-        this.element.addEventListener('drag', this.dropHandler);
+        this.element.addEventListener('drop', this.dropHandler);
 
         // Add listener
         this.projectState.addListener((projects: Project[]) => {

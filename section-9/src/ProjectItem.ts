@@ -17,12 +17,12 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements 
 
     @autobind
     dragStartHandler(event: DragEvent): void {
-        console.log('drag start', event);
+        event.dataTransfer!.setData('text/plain', this.project.id);
+        event.dataTransfer!.effectAllowed = 'move';
     }
 
     @autobind
     dragEndHandler(event: DragEvent): void {
-        console.log('drag end', event);
     }
 
     get persons() {
